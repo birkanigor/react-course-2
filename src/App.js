@@ -1,8 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+/*import logo from './logo.svg';
+import './App.css';
+import Header from './Header';
+import Technologies from './Technologies';
 
-function App() {
+const App = () => {
+  return (
+    <div>
+      <Header/>
+      <Technologies/>
+    </div>
+  )
+}
+*/
+
+const App = () =>{
+  return (
+    <div className='app-wrapper'>
+      <Header/>
+      <Navbar/>
+      <Profile/>
+    </div>
+  )
+}
+
+/*function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +47,5 @@ function App() {
       </header>
     </div>
   );
-}
-
+}*/
 export default App;
