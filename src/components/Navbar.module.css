@@ -1,0 +1,12 @@
+.nav{
+  griid-are : n;
+  background-color: burlywood;
+}
+
+.item{
+  color: white;
+}
+
+.active{
+  color:gold;
+}
