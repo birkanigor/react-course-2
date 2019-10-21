@@ -2,8 +2,7 @@ import React from 'react';
 import s from './Post.module.css';
 
 const Post = (props) => {
-  //console.log(props);
-  //debugger;
+
   return (
       <div className={s.item}>
         <img src="https://i.imgur.com/l5HXBdT.jpg"></img>
