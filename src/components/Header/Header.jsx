@@ -4,6 +4,7 @@ const Header =() =>{
   return  (
       <header className={s.header}>
         <img src="https://haxe.org/img/branding/haxe-logo-glyph.png"></img>
+        <h2>The BIG Project</h2>
       </header>
   )
 }

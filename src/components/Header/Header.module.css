@@ -1,6 +1,9 @@
 .header{
   grid-area: h;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
   background-color: green;
+  color: white;
 }
 
 .header img{

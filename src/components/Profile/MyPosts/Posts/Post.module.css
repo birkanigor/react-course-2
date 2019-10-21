@@ -1,5 +1,6 @@
 .item{
   color:greenyellow;
+  padding-bottom: 15px;
 }
 
 .item img{
@@ -9,4 +10,8 @@
 
 .like img{
   width:20px;
+}
+
+.like{
+  padding-left: 50px;
 }
