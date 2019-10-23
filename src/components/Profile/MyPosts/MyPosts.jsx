@@ -8,7 +8,8 @@ const MyPosts = (props) => {
   let newPostTextAreaElement = React.createRef();
   let addPost = ()=>{
     let postText = newPostTextAreaElement.current.value;
-    alert(postText);
+    props.addPost(postText);
+    newPostTextAreaElement.current.value="";
   }
 
   return (

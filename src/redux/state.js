@@ -1,3 +1,4 @@
+import {renderEntireTree} from '../render';
 let state = {
 
   profilePage: {
@@ -8,7 +9,6 @@ let state = {
       {id : 4 , message : "Test message ..." ,  likesCount:0}
     ]
   },
-
 
   dialogsPage : {
     dialogsData : [
@@ -25,7 +25,7 @@ let state = {
       {id : 3 , message : "This is test message"}
     ]
   },
-  
+
   sideBar :{
     freinds :[
       {id : 1 , name : "Adam" , avatar:"https://image.flaticon.com/icons/svg/145/145859.svg"},
@@ -33,6 +33,25 @@ let state = {
       {id : 3 , name : "Steve" , avatar:"https://image.flaticon.com/icons/svg/163/163834.svg"}
     ]
   }
+}
+
+export let addPost = (postMessage) => {
+  let maxId = 0;
+  state.profilePage.postsData.forEach(post => {
+    if (post.id > maxId) {
+      maxId = post.id;
+    }
+  });
+  debugger;
+
+  let newPost = {
+    id : maxId+1 ,
+    message : postMessage ,
+    likesCount:0
+  };
+
+  state.profilePage.postsData.push(newPost);
+  renderEntireTree(state)
 }
 
 export default state;
