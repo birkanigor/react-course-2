@@ -7,7 +7,8 @@ let state = {
       {id : 2 , message : "It's my first message" ,  likesCount:15},
       {id : 3 , message : "My name is Igor Birkan" ,  likesCount:25},
       {id : 4 , message : "Test message ..." ,  likesCount:0}
-    ]
+    ],
+    newPostText:""
   },
 
   dialogsPage : {
@@ -23,7 +24,8 @@ let state = {
       {id : 1 , message : "Hi"},
       {id : 2 , message : "How are you ?!"},
       {id : 3 , message : "This is test message"}
-    ]
+    ],
+    newMessageText:"igor"
   },
 
   sideBar :{
@@ -35,23 +37,56 @@ let state = {
   }
 }
 
-export let addPost = (postMessage) => {
+window.state=state; // for logging only !
+
+export let addPost = () => {
   let maxId = 0;
   state.profilePage.postsData.forEach(post => {
     if (post.id > maxId) {
       maxId = post.id;
     }
   });
-  debugger;
 
   let newPost = {
     id : maxId+1 ,
-    message : postMessage ,
+    message : state.profilePage.newPostText ,
     likesCount:0
   };
 
   state.profilePage.postsData.push(newPost);
-  renderEntireTree(state)
+  state.profilePage.newPostText='';
+  renderEntireTree(state);
+
+}
+
+export let updatePostTextArea = (postText) => {
+  state.profilePage.newPostText=postText;
+  renderEntireTree(state);
+}
+
+export let addMessage = () =>{
+
+  let maxId = 0;
+  state.dialogsPage.messagesData.forEach(message => {
+    if (message.id > maxId) {
+      maxId = message.id;
+    }
+  });
+
+  let newPost = {
+    id : maxId+1 ,
+    message : state.dialogsPage.newMessageText ,
+    likesCount:0
+  };
+
+  state.dialogsPage.messagesData.push(newPost);
+  state.dialogsPage.newMessageText='';
+  renderEntireTree(state);
+}
+
+export let updateMessageTextArea = (messageText) => {
+  state.dialogsPage.newMessageText=messageText;
+  renderEntireTree(state);
 }
 
 export default state;
