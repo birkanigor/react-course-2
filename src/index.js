@@ -4,16 +4,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import {BrowserRouter,Route} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 let renderEntireTree = (state) =>{
   ReactDOM.render(
     <BrowserRouter>
       <App state={state}
-           addPost={store.addPost.bind(store)}
-           updatePostTextArea={store.updatePostTextArea.bind(store)}
-           addMessage={store.addMessage.bind(store)}
-           updateMessageTextArea = {store.updateMessageTextArea.bind(store)}
+          // addPost={store.addPost.bind(store)}
+           dispatch={store.dispatch.bind(store)}
+           //updatePostTextArea={store.updatePostTextArea.bind(store)}
+           //addMessage={store.addMessage.bind(store)}
+           //updateMessageTextArea = {store.updateMessageTextArea.bind(store)}
         />
     </BrowserRouter>,
     document.getElementById('root')

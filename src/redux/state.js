@@ -1,4 +1,10 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
+
   _state : {
 
     profilePage: {
@@ -37,67 +43,86 @@ let store = {
     }
   },
 
+  _callSubscriber(){},
+
   getState(){
     return this._state;
   },
 
-  _callSubscriber(){},
-
-  addPost(){
-    let maxId = 0;
-    this._state.profilePage.postsData.forEach(post => {
-      if (post.id > maxId) {
-        maxId = post.id;
-      }
-    });
-
-    let newPost = {
-      id : maxId+1 ,
-      message : this._state.profilePage.newPostText ,
-      likesCount:0
-    };
-
-    this._state.profilePage.postsData.push(newPost);
-    this._state.profilePage.newPostText='';
-    this._callSubscriber(this._state);
-
-  },
-
-  updatePostTextArea(postText) {
-    this._state.profilePage.newPostText=postText;
-    this._callSubscriber(this._state);
-  },
-
-  addMessage() {
-
-    let maxId = 0;
-    this._state.dialogsPage.messagesData.forEach(message => {
-      if (message.id > maxId) {
-        maxId = message.id;
-      }
-    });
-
-    let newPost = {
-      id : maxId+1 ,
-      message : this._state.dialogsPage.newMessageText ,
-      likesCount:0
-    };
-
-    this._state.dialogsPage.messagesData.push(newPost);
-    this._state.dialogsPage.newMessageText='';
-    this._callSubscriber(this._state);
-  },
-
-  updateMessageTextArea(messageText) {
-    this._state.dialogsPage.newMessageText=messageText;
-    this._callSubscriber(this._state);
-  },
-
   subscribe(observer){
     this._callSubscriber=observer;
+  },
+
+  dispatch(action){
+    switch (action.type){
+      case ADD_POST :
+        let maxPostId = 0;
+        this._state.profilePage.postsData.forEach(post => {
+          if (post.id > maxPostId) {
+            maxPostId = post.id;
+          }
+        });
+    
+        let newPost = {
+          id : maxPostId+1 ,
+          message : this._state.profilePage.newPostText ,
+          likesCount:0
+        };
+    
+        this._state.profilePage.postsData.push(newPost);
+        this._state.profilePage.newPostText='';
+        this._callSubscriber(this._state); 
+        break;
+      case UPDATE_NEW_POST_TEXT:
+        this._state.profilePage.newPostText=action.postText;
+        this._callSubscriber(this._state); 
+        break;
+      case ADD_MESSAGE:
+          let maxMessageId = 0;
+          this._state.dialogsPage.messagesData.forEach(message => {
+            if (message.id > maxMessageId) {
+              maxMessageId = message.id;
+            }
+          });
+      
+          let newMessage = {
+            id : maxMessageId+1 ,
+            message : this._state.dialogsPage.newMessageText ,
+            likesCount:0
+          };
+      
+          this._state.dialogsPage.messagesData.push(newMessage);
+          this._state.dialogsPage.newMessageText='';
+          this._callSubscriber(this._state);        
+        break;
+      case UPDATE_NEW_MESSAGE_TEXT:
+          this._state.dialogsPage.newMessageText=action.messageText;
+          this._callSubscriber(this._state);        
+        break;
+      default :
+        break;
+    }
+
   }
 
 }
+
+export const addPostActionCreator = () =>(
+  { type :ADD_POST}
+)
+
+export const updateNewPostActionCreator = (postText)=>(
+   {type : UPDATE_NEW_POST_TEXT , postText : postText }
+)
+
+export const addMessageActionCreator = () =>(
+  { type :ADD_MESSAGE }
+)
+
+export const updateNewMessageActionCreator = (messageText)=>(
+  {type : UPDATE_NEW_MESSAGE_TEXT , messageText : messageText }
+)
+
 
 export default store;
 
