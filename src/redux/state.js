@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import profileReducer from './profileReducer'
+import dialogReducer  from './dialogReducer'
+import sidebarReducer from './sidebarReducer'
 
 let store = {
 
@@ -54,76 +53,15 @@ let store = {
   },
 
   dispatch(action){
-    switch (action.type){
-      case ADD_POST :
-        let maxPostId = 0;
-        this._state.profilePage.postsData.forEach(post => {
-          if (post.id > maxPostId) {
-            maxPostId = post.id;
-          }
-        });
-    
-        let newPost = {
-          id : maxPostId+1 ,
-          message : this._state.profilePage.newPostText ,
-          likesCount:0
-        };
-    
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText='';
-        this._callSubscriber(this._state); 
-        break;
-      case UPDATE_NEW_POST_TEXT:
-        this._state.profilePage.newPostText=action.postText;
-        this._callSubscriber(this._state); 
-        break;
-      case ADD_MESSAGE:
-          let maxMessageId = 0;
-          this._state.dialogsPage.messagesData.forEach(message => {
-            if (message.id > maxMessageId) {
-              maxMessageId = message.id;
-            }
-          });
-      
-          let newMessage = {
-            id : maxMessageId+1 ,
-            message : this._state.dialogsPage.newMessageText ,
-            likesCount:0
-          };
-      
-          this._state.dialogsPage.messagesData.push(newMessage);
-          this._state.dialogsPage.newMessageText='';
-          this._callSubscriber(this._state);        
-        break;
-      case UPDATE_NEW_MESSAGE_TEXT:
-          this._state.dialogsPage.newMessageText=action.messageText;
-          this._callSubscriber(this._state);        
-        break;
-      default :
-        break;
-    }
-
+    this._state.profilePage = profileReducer(this._state.profilePage,action);
+    this._state.dialogsPage = dialogReducer(this._state.dialogsPage,action);
+    this._state.ssideBa = sidebarReducer(this._state.ssideBar,action);
+    this._callSubscriber(this._state); 
   }
 
 }
 
-export const addPostActionCreator = () =>(
-  { type :ADD_POST}
-)
-
-export const updateNewPostActionCreator = (postText)=>(
-   {type : UPDATE_NEW_POST_TEXT , postText : postText }
-)
-
-export const addMessageActionCreator = () =>(
-  { type :ADD_MESSAGE }
-)
-
-export const updateNewMessageActionCreator = (messageText)=>(
-  {type : UPDATE_NEW_MESSAGE_TEXT , messageText : messageText }
-)
-
-
 export default store;
 
 window.state = store; // for logging only !
+
