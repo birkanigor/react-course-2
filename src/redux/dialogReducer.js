@@ -1,7 +1,24 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
-const dialogReducer =(state,action) => {
+let initialState = {
+    dialogsData : [
+        {id : 1 , name : "Adam" , avatar:"https://image.flaticon.com/icons/svg/145/145859.svg"},
+        {id : 2 , name : "David" , avatar:"https://image.flaticon.com/icons/svg/163/163801.svg"},
+        {id : 3 , name : "Steve" , avatar:"https://image.flaticon.com/icons/svg/163/163834.svg"},
+        {id : 4 , name : "Kevin", avatar:"https://image.flaticon.com/icons/svg/145/145867.svg"},
+        {id : 5 , name : "Kate", avatar:"https://image.flaticon.com/icons/svg/145/145862.svg"},
+        {id : 6 , name : "Mary" , avatar:"https://image.flaticon.com/icons/svg/145/145852.svg"}
+        ],
+    messagesData : [
+        {id : 1 , message : "Hi"},
+        {id : 2 , message : "How are you ?!"},
+        {id : 3 , message : "This is test message"}
+        ],
+    newMessageText:""
+}
+
+const dialogReducer =(state = initialState , action) => {
     switch (action.type){        
         case ADD_MESSAGE:
             let maxMessageId = 0;
@@ -19,15 +36,15 @@ const dialogReducer =(state,action) => {
         
             state.messagesData.push(newMessage);
             state.newMessageText='';
-            break;
+            return state;
         case UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText=action.messageText;
-            break;
+            return state;
         default :
-            break;
+            return state;
     }
   
-    return state;
+    
 }
 
 export const addMessageActionCreator = () =>(  { type :ADD_MESSAGE })
