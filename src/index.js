@@ -7,7 +7,7 @@ import './index.css';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
-let renderEntireTree = () =>{
+
   ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
@@ -16,14 +16,9 @@ let renderEntireTree = () =>{
     </BrowserRouter>,
     document.getElementById('root')
     );
-};
 
-renderEntireTree(store.getState());
 
-store.subscribe(()=> {
-  let state = store.getState();  
-  renderEntireTree(state);
-});
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

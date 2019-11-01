@@ -8,6 +8,9 @@ const mapStateToProps = (state) =>{
   }
 
   const mapDispatchToProps = (dispatch) =>{
+    return {
+      
+    }
   }
 
 const MyFriendsContainer = connect(mapStateToProps,mapDispatchToProps)(Friends);

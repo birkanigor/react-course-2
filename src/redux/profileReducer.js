@@ -13,26 +13,33 @@ let initialState = {
 
 const profileReducer = (state = initialState , action) => {    
     switch (action.type){
-        case ADD_POST :
+        case ADD_POST :{
+            let stateCopy = {...state}
+            stateCopy.postsData = [...state.postsData]
+
             let maxPostId = 0;
-            state.postsData.forEach(post => {
-            if (post.id > maxPostId) {
-                maxPostId = post.id;
-            }
-            });
-        
+            stateCopy.postsData.forEach(post => {
+                if (post.id > maxPostId) {
+                    maxPostId = post.id;
+                }
+            })
+
             let newPost = {
-            id : maxPostId+1 ,
-            message : state.newPostText ,
-            likesCount:0
+                id : maxPostId+1 ,
+                message : stateCopy.newPostText ,
+                likesCount:0
             };
-        
-            state.postsData.push(newPost);
-            state.newPostText='';          
-            return state;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText=action.postText;          
-            return state;
+            stateCopy.postsData.push(newPost);
+            stateCopy.newPostText='';          
+            return stateCopy;
+        }
+
+        case UPDATE_NEW_POST_TEXT:{
+            let stateCopy = {...state}
+            stateCopy.newPostText=action.postText;          
+            return stateCopy;            
+        }
+
         default :
             return state;
     }
