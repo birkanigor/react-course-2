@@ -9,10 +9,9 @@ import Settings from './components/Settings/Settings';
 import {Route} from "react-router-dom";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
-
 const App = (props) =>{
   console.log(props);
-  debugger;
+
   return (
       <div className='app-wrapper'>
         <Header/>

@@ -4,14 +4,14 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 
 const Dialogs = (props) =>{
-  let dailogsElements = props.dialogsData.map( dialog => ( <DialogItem avatar={dialog.avatar} name={dialog.name} id={dialog.id}/>));
-  let messagesElements = props.messagesData.map( mess => ( <Message messageText={mess.message}/>));
+  
+  let dailogsElements = props.dialogsPage.dialogsData.map( dialog => ( <DialogItem avatar={dialog.avatar} name={dialog.name} id={dialog.id}/>));
+  let messagesElements = props.dialogsPage.messagesData.map( mess => ( <Message messageText={mess.message}/>));
 
   let newMessageTextAreaElement = React.createRef();
 
   let onAddMessage = ()=>{
     props.addMessage();
-    
   }
 
   let onMessageChange =() =>{    

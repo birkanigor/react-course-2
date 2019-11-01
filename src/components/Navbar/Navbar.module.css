@@ -18,17 +18,3 @@
   color:gold;
 }
 
-.friends{
-  padding-top: 50px;
-  font-size: 32px;
-  color: white;
-}
-
-.friends .item{
-  font-size: 20px;
-}
-
-.friends .item img{
-  width:30px;
-  padding: 10px;
-}

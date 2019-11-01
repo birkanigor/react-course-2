@@ -15,10 +15,11 @@ let initialState = {
         {id : 2 , message : "How are you ?!"},
         {id : 3 , message : "This is test message"}
         ],
-    newMessageText:""
+    newMessageText:"message 2 add"
 }
 
 const dialogReducer =(state = initialState , action) => {
+
     switch (action.type){        
         case ADD_MESSAGE:
             let maxMessageId = 0;

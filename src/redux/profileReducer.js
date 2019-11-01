@@ -8,11 +8,10 @@ let initialState = {
         {id : 3 , message : "My name is Igor Birkan" ,  likesCount:25},
         {id : 4 , message : "Test message ..." ,  likesCount:0}
       ],
-      newPostText:""
+      newPostText:"text 2 add"
 }
 
-const profileReducer = (state = initialState , action) => {
-
+const profileReducer = (state = initialState , action) => {    
     switch (action.type){
         case ADD_POST :
             let maxPostId = 0;

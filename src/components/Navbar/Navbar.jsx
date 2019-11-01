@@ -1,19 +1,9 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
-import Friend from './SideBar/Friend';
-import StoreContext from '../../StoreContext';
+import MyFriendsContainer from './Friends/MyFriendsContainer';
 
 const Navbar =() =>{
-  
-
-  return  (<StoreContext.Consumer>
-    {
-      (store) => {
-        debugger;
-        let state = store.getState();
-        let friendElements = state.sideBar.freinds.map( friend => ( <Friend friend={friend} />));
-
         return(
               <div className={s.nav}>
 
@@ -35,18 +25,10 @@ const Navbar =() =>{
                         </div>
                   </nav>
 
-                  <div className={s.friends}>
-                      <div>Friends</div>
-                      {friendElements}
-                  </div>
+                  <MyFriendsContainer/>
 
             </div>
         )
-      }
-    }
-  </StoreContext.Consumer>
-    
-  )
 }
 
 export default Navbar;
