@@ -4,7 +4,7 @@ import s from './MyPosts.module.css';
 
 const MyPosts = (props) => {
 
-  let postsElements = props.postsData.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
+  let postsElements = props.postsData.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>)
   let newPostTextAreaElement = React.createRef();
 
   let onAddPost = ()=>{

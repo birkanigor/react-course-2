@@ -22,12 +22,9 @@ const dialogReducer =(state = initialState , action) => {
 
     switch (action.type){        
         case ADD_MESSAGE:{
-
-            let stateCopy = {...state}
-            stateCopy.messagesData = [...state.messagesData]
-
+           
             let maxMessageId = 0;
-            stateCopy.messagesData.forEach(message => {
+            state.messagesData.forEach(message => {
                 if (message.id > maxMessageId) {
                     maxMessageId = message.id;
                 }
@@ -35,18 +32,21 @@ const dialogReducer =(state = initialState , action) => {
         
             let newMessage = {
                 id : maxMessageId+1 ,
-                message : stateCopy.newMessageText ,
+                message : state.newMessageText ,
                 likesCount:0
             };
-        
-            stateCopy.messagesData.push(newMessage);
-            stateCopy.newMessageText='';
-            return stateCopy;            
+
+            return {
+                ...state,
+                messagesData : [...state.messagesData , newMessage],
+                newMessageText : ""
+            }          
         }
         case UPDATE_NEW_MESSAGE_TEXT:{
-            let stateCopy = {...state}
-            stateCopy.newMessageText=action.messageText;
-            return stateCopy;            
+            return {
+                ...state,
+                newMessageText : action.messageText
+            }
         }
 
         default :

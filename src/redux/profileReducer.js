@@ -11,14 +11,12 @@ let initialState = {
       newPostText:"text 2 add"
 }
 
-const profileReducer = (state = initialState , action) => {    
+const profileReducer = (state = initialState , action) => {  
+    
     switch (action.type){
         case ADD_POST :{
-            let stateCopy = {...state}
-            stateCopy.postsData = [...state.postsData]
-
             let maxPostId = 0;
-            stateCopy.postsData.forEach(post => {
+            state.postsData.forEach(post => {
                 if (post.id > maxPostId) {
                     maxPostId = post.id;
                 }
@@ -26,18 +24,22 @@ const profileReducer = (state = initialState , action) => {
 
             let newPost = {
                 id : maxPostId+1 ,
-                message : stateCopy.newPostText ,
+                message : state.newPostText ,
                 likesCount:0
             };
-            stateCopy.postsData.push(newPost);
-            stateCopy.newPostText='';          
-            return stateCopy;
+
+            return  {
+                ...state,
+                postsData : [...state.postsData,newPost],
+                newPostText : ""
+            }                
         }
 
         case UPDATE_NEW_POST_TEXT:{
-            let stateCopy = {...state}
-            stateCopy.newPostText=action.postText;          
-            return stateCopy;            
+            return {
+                ...state,
+                newPostText : action.postText
+            }                 
         }
 
         default :
