@@ -1,0 +1,12 @@
+.userPhoto{
+    height: 100px;
+}
+
+.userCard{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+    padding:30px;
+    width:80%;
+}
