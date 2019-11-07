@@ -4,9 +4,7 @@ import * as axios from 'axios'
 import userPhoto from './../../assets/images/user_1.svg'
 
 class Users extends React.Component{
-
-    constructor(props){
-        super(props);
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response =>{
             this.props.setUsers(response.data.items);
         })
@@ -25,7 +23,6 @@ class Users extends React.Component{
                             {u.followed ?
                                 <button onClick={() => { this.props.unFollow(u.id) }}>Unfollow</button> :
                                 <button onClick={() => { this.props.follow(u.id) }}>Follow</button>}
-
                         </div>
                     </span>
                         <span>
@@ -35,7 +32,6 @@ class Users extends React.Component{
                         <span>
                             <div>Country : {(u.location && u.location.country) ?  u.location.country : 'USA'}</div>
                             <div>City : {(u.location && u.location.city) ?  u.location.city : 'NY'}</div>
-
                         </span>
                     </span>
                     </div>
@@ -43,5 +39,6 @@ class Users extends React.Component{
             }
         </div>
     }
+
 }
 export default Users;
