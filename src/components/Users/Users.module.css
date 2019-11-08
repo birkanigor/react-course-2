@@ -11,6 +11,7 @@
     grid-gap: 30px;
     width:80%;
     border:0.5px white solid;
+    margin: 10px;
 }
 
 .userAvatar {
@@ -19,4 +20,22 @@
 
 .followUser{
     text-align: center;
+}
+
+.selectedPage{
+    font-weight: bolder;
+    font-size : 22px;
+}
+
+.pager{
+    margin: 10px;
+    font-size : 18px;
+    color: white;
+    overflow-wrap: break-word;
+    max-width: 1000px;
+}
+
+.pageNum{
+    padding: 10px;
+    cursor: pointer;
 }
