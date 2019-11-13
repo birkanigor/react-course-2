@@ -12,5 +12,5 @@ let reducers = combineReducers({
 });
 
 let store = createStore(reducers); // store creates dispatch automatically
-
+window.store = store;
 export default store;

@@ -48,31 +48,6 @@ const mapStateToProps = (state) =>{
         isFetching : state.usersPage.isFetching
     }
 }
-/*
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        follow : (userId) =>{
-            dispatch(followActionCreator(userId))
-        },
-        unFollow : (userId) =>{
-            dispatch(unFollowActionCreator(userId))
-        },
-        setUsers : (users)=>{
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage:(pageNumber)=> {
-            dispatch(setCurrentPageActionCreator(pageNumber))
-        },
-        setTotalUsersCount:(totalCount)=>{
-            dispatch(setTotalUsersCountActionCreator(totalCount))
-        },
-        setToggleIsFetching : (isFetching)=>{
-            dispatch(toggleIsFetchingActionCreator(isFetching))
-        }
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(UsersAPIContainer)*/
 
 export default connect(mapStateToProps,
                      { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetching })(UsersAPIContainer)
